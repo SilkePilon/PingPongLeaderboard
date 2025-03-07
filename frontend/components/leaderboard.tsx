@@ -8,7 +8,7 @@ import { TableIcon as TableTennisIcon, Trophy, Medal, Moon, Sun } from "lucide-r
 import { motion, AnimatePresence } from "framer-motion"
 import { RoundTableLeaderboard } from "@/components/round-table-leaderboard"
 import { OneVsOneLeaderboard } from "@/components/one-vs-one-leaderboard"
-import { useTheme } from "next-themes"
+import { useTheme } from "@/components/theme-provider"
 
 export function Leaderboard() {
   const [mounted, setMounted] = useState(false)
@@ -54,11 +54,11 @@ export function Leaderboard() {
       </div>
 
       <Tabs defaultValue="round-table" className="w-full">
-        <TabsList className="grid w-full max-w-md mx-auto grid-cols-2 mb-8 rounded-xl overflow-hidden">
-          <TabsTrigger value="round-table" className="text-base">
+        <TabsList className="grid w-full max-w-md mx-auto grid-cols-2 mb-8 rounded-xl">
+          <TabsTrigger value="round-table" className="text-lg h-full">
             Round the Table
           </TabsTrigger>
-          <TabsTrigger value="one-v-one" className="text-base">
+          <TabsTrigger value="one-v-one" className="text-lg h-full">
             1 vs 1 Matches
           </TabsTrigger>
         </TabsList>
@@ -121,7 +121,14 @@ export function Leaderboard() {
   )
 }
 
-function StatsCard({ icon, title, value, description }) {
+interface StatsCardProps {
+  icon: React.ReactNode;
+  title: string;
+  value: string;
+  description: string;
+}
+
+function StatsCard({ icon, title, value, description }: StatsCardProps) {
   return (
     <motion.div whileHover={{ y: -5 }} transition={{ type: "spring", stiffness: 300 }}>
       <Card className="rounded-xl overflow-hidden">

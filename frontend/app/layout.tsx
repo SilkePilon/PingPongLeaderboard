@@ -9,11 +9,13 @@ export const metadata = {
   description: "Track your office ping pong prowess",
 }
 
-export default function RootLayout({ children }) {
+import { ReactNode } from "react";
+
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <ThemeProvider defaultTheme="system" storageKey="theme">
           {children}
         </ThemeProvider>
       </body>
